@@ -156,10 +156,88 @@
     </div>
 
     <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/919751828936"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
+      <style>
+    /* Social Media Section Styling */
+    .social-section {
+        padding: 50px 8%;
+        background-color: #ffffff;
+        text-align: center;
+        border-top: 1px solid #eeeeee;
+    }
+    .social-title {
+        font-size: 1.8rem;
+        color: #2d3436;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+    .social-links-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .social-item {
+        text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #636e72; /* Muted grey default */
+    }
+    .social-item i {
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+    }
+    .social-item span {
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    /* Hover Effects with Official Colors */
+    .social-item.insta:hover { color: #E1306C; transform: translateY(-5px); }
+    .social-item.x-twitter:hover { color: #000000; transform: translateY(-5px); }
+    .social-item.facebook:hover { color: #1877F2; transform: translateY(-5px); }
+    .social-item.youtube:hover { color: #FF0000; transform: translateY(-5px); }
+    .social-item.linkedin:hover { color: #0077B5; transform: translateY(-5px); }
+
+    /* Mobile view adjustments */
+    @media (max-width: 480px) {
+        .social-links-container { gap: 20px; }
+        .social-item i { font-size: 1.8rem; }
+    }
+</style>
+
+<section class="social-section" id="social-connect">
+    <h2 class="social-title">Follow My Journey</h2>
+    <div class="social-links-container">
+        
+        <a href="https://www.instagram.com/YOUR_USERNAME" target="_blank" class="social-item insta">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+        </a>
+
+        <a href="https://x.com/YOUR_USERNAME" target="_blank" class="social-item x-twitter">
+            <i class="fab fa-x-twitter"></i>
+            <span>X / Twitter</span>
+        </a>
+
+        <a href="https://www.facebook.com/YOUR_USERNAME" target="_blank" class="social-item facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+        </a>
+
+        <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" class="social-item youtube">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" class="social-item linkedin">
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+        </a>
+
+    </div>
+</section>
         </div>
         <p style="margin-top:20px; color: var(--gray);">&copy; 2026 Elavarasan Santhoshkumar. All Rights Reserved.</p>
     </footer>
