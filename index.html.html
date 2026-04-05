@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elavarasan | Traveler & Cinephile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --accent: #f1c40f; /* Gold color for cinematic feel */
+            --text: #ffffff;
+            --gray: #888;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--primary); color: var(--text); line-height: 1.6; }
+        
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
+        .nav-links a { text-decoration: none; color: white; margin-left: 25px; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1500&q=80'); 
+                background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; }
+        .hero p { font-size: 1.2rem; color: var(--accent); letter-spacing: 3px; }
+
+        /* General Section Styling */
+        .container { padding: 80px 8%; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: var(--accent); }
+
+        /* Blog/Stories Section */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .blog-card { background: #111; border-radius: 12px; overflow: hidden; transition: 0.4s; border: 1px solid #222; }
+        .blog-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .blog-img { width: 100%; height: 250px; object-fit: cover; }
+        .blog-content { padding: 25px; }
+        .blog-content h3 { color: var(--accent); margin-top: 0; }
+
+        /* Photo Gallery Section */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { height: 250px; border-radius: 8px; overflow: hidden; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(30%); }
+        .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0%); }
+
+        /* Movie Section */
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+        .movie-item { cursor: pointer; position: relative; border-radius: 10px; overflow: hidden; transition: 0.3s; }
+        .movie-item img { width: 100%; height: 280px; object-fit: cover; border: 1px solid #333; }
+        .movie-item:hover { transform: scale(1.05); }
+        .movie-overlay { position: absolute; bottom: 0; width: 100%; padding: 10px; background: rgba(0,0,0,0.8); font-size: 0.9rem; text-align: center; color: var(--accent); }
+
+        /* Modal / Popup */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
+        .modal-content { position: relative; margin: 2% auto; width: 90%; max-width: 1000px; background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #333; }
+        .video-box { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .details-box { padding: 30px; display: flex; flex-direction: column; gap: 10px; }
+        .details-box h2 { color: var(--accent); margin: 0; }
+        .quote { font-style: italic; font-size: 1.2rem; border-left: 4px solid var(--accent); padding-left: 15px; color: #ddd; }
+        .close-btn { position: absolute; right: 20px; top: 10px; color: white; font-size: 40px; cursor: pointer; z-index: 10; }
+
+        /* Footer */
+        footer { background: #000; padding: 50px 8%; text-align: center; border-top: 1px solid #222; }
+        .social-links a { color: white; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ELAVARASAN</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#stories">Stories</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#movies">Cinema</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div>
+            <h1>The Cinematic Traveler</h1>
+            <p>Capturing Stories | Chasing Sunsets</p>
+        </div>
+    </section>
+
+    <div class="container" id="stories">
+        <h2 class="section-title">Travel Journals</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=60" class="blog-img">
+                <div class="blog-content">
+                    <h3>The Road Untraveled</h3>
+                    <p>Exploring the deep roots of Tamil heritage through the lenses of a traveler.</p>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=60" class="blog-img">
+                <div class="blog-content">
+                    <h3>Monsoon Magic</h3>
+                    <p>How the mountains transform during the heavy rains of November.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="gallery" style="background: #050505;">
+        <h2 class="section-title">Visual Moments</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://drive.google.com/file/d/1k6A6eLMMyE1AqRYu9qehcaLOZBJSf-N-/view?usp=sharing"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x400?text=Travel+2"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x400?text=Travel+3"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x400?text=Travel+4"></div>
+        </div>
+    </div>
+
+    <div class="container" id="movies">
+        <h2 class="section-title">Top 10 Cinema Picks</h2>
+        <div class="movie-grid">
+            <div class="movie-item" onclick="openMovie('Ghilli', 'GzZ-6zP5eYc', 'Indha ulagame unna ethirthalum... Thonum pothu dhaan thukanum!')">
+                <img src="https://drive.google.com/file/d/1k6A6eLMMyE1AqRYu9qehcaLOZBJSf-N-/view?usp=sharing" alt="Ghilli">
+                <div class="movie-overlay">Ghilli</div>
+            </div>
+            <div class="movie-item" onclick="openMovie('Leo', 'Po3j_vIn7i8', 'I am a Badass!')">
+                <img src="https://via.placeholder.com/200x300?text=Leo+Poster" alt="Leo">
+                <div class="movie-overlay">Leo</div>
+            </div>
+            </div>
+    </div>
+
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeMovie()">&times;</span>
+            <div class="video-box">
+                <iframe id="videoPlayer" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="details-box">
+                <h2 id="mTitle">Movie Title</h2>
+                <p id="mQuote" class="quote"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/919751828936"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p style="margin-top:20px; color: var(--gray);">&copy; 2026 Elavarasan Santhoshkumar. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function openMovie(title, vidId, quote) {
+            document.getElementById('mTitle').innerText = title;
+            document.getElementById('mQuote').innerText = quote;
+            document.getElementById('videoPlayer').src = "https://www.youtube.com/embed/" + vidId + "?autoplay=1";
+            document.getElementById('movieModal').style.display = "block";
+        }
+
+        function closeMovie() {
+            document.getElementById('movieModal').style.display = "none";
+            document.getElementById('videoPlayer').src = "";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('movieModal')) { closeMovie(); }
+        }
+    </script>
+
+</body>
+</html>
