@@ -3,262 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elavarasan | Traveler & Cinephile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #0a0a0a;
-            --accent: #f1c40f; /* Gold color for cinematic feel */
-            --text: #ffffff;
-            --gray: #888;
-        }
+    <title>Elavarasan | Cinematic Storyteller</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--primary); color: var(--text); line-height: 1.6; }
+    <style>
+        :root { 
+            --accent: #007AFF; 
+            --bg: #ffffff; 
+            --text: #1d1d1f; 
+            --card: #f5f5f7; 
+            --glass: rgba(255, 255, 255, 0.8);
+        }
         
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); letter-spacing: 2px; }
-        .nav-links a { text-decoration: none; color: white; margin-left: 25px; font-weight: 500; transition: 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- 1. Navigation --- */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 8%; position: sticky; top: 0; 
+            background: var(--glass); backdrop-filter: blur(20px); 
+            z-index: 1000; border-bottom: 1px solid #eee; 
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; color: var(--accent); }
+        .nav-links a { text-decoration: none; color: var(--text); margin-left: 25px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
-        /* Hero Section */
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1500&q=80'); 
-                background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; }
-        .hero p { font-size: 1.2rem; color: var(--accent); letter-spacing: 3px; }
+        /* --- 2. Live Location Pin (Animated) --- */
+        .location-pin {
+            position: fixed; left: 25px; top: 50%; transform: translateY(-50%);
+            z-index: 999; background: white; padding: 12px 18px; border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 10px;
+            animation: float 3s ease-in-out infinite; border: 1px solid #f0f0f0;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(-50%); } 50% { transform: translateY(-55%); } }
+        .dot { width: 10px; height: 10px; background: #ff3b30; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,59,48,0.7); } 100% { box-shadow: 0 0 0 12px rgba(255,59,48,0); } }
 
-        /* General Section Styling */
-        .container { padding: 80px 8%; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; position: relative; padding-bottom: 15px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: var(--accent); }
+        /* --- 3. HD Full Banner Hero Section --- */
+        .hero { 
+            height: 100vh; width: 100%; position: relative; 
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+            background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
+        .hero-content p { font-size: 1.2rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; color: #fff; }
+        .hero-content h1 { font-size: 5.5rem; font-weight: 800; line-height: 1; letter-spacing: -3px; margin-bottom: 30px; }
+        .hero-content span { font-size: 1.1rem; opacity: 0.9; line-height: 1.6; display: block; }
 
-        /* Blog/Stories Section */
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .blog-card { background: #111; border-radius: 12px; overflow: hidden; transition: 0.4s; border: 1px solid #222; }
-        .blog-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .blog-img { width: 100%; height: 250px; object-fit: cover; }
-        .blog-content { padding: 25px; }
-        .blog-content h3 { color: var(--accent); margin-top: 0; }
+        /* --- 4. Content Sections Styling --- */
+        .container { padding: 100px 8%; }
+        .section-header { margin-bottom: 50px; text-align: center; }
+        .section-title { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
 
-        /* Photo Gallery Section */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item { height: 250px; border-radius: 8px; overflow: hidden; cursor: pointer; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(30%); }
-        .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0%); }
+        /* --- 5. Blog Cards --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .blog-card { 
+            background: var(--card); border-radius: 30px; padding: 30px; 
+            transition: 0.4s; cursor: pointer; border: 1px solid transparent; 
+        }
+        .blog-card:hover { transform: translateY(-15px); background: white; border-color: var(--accent); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        .blog-card img { width: 100%; height: 220px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
 
-        /* Movie Section */
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .movie-item { cursor: pointer; position: relative; border-radius: 10px; overflow: hidden; transition: 0.3s; }
-        .movie-item img { width: 100%; height: 280px; object-fit: cover; border: 1px solid #333; }
-        .movie-item:hover { transform: scale(1.05); }
-        .movie-overlay { position: absolute; bottom: 0; width: 100%; padding: 10px; background: rgba(0,0,0,0.8); font-size: 0.9rem; text-align: center; color: var(--accent); }
+        /* --- 6. Gallery Grid --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .gallery-item { border-radius: 25px; overflow: hidden; height: 350px; cursor: pointer; position: relative; transition: 0.4s; }
+        .gallery-item:hover { transform: scale(1.03); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Modal / Popup */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); }
-        .modal-content { position: relative; margin: 2% auto; width: 90%; max-width: 1000px; background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #333; }
-        .video-box { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .details-box { padding: 30px; display: flex; flex-direction: column; gap: 10px; }
-        .details-box h2 { color: var(--accent); margin: 0; }
-        .quote { font-style: italic; font-size: 1.2rem; border-left: 4px solid var(--accent); padding-left: 15px; color: #ddd; }
-        .close-btn { position: absolute; right: 20px; top: 10px; color: white; font-size: 40px; cursor: pointer; z-index: 10; }
+        /* --- 7. Cinema Section (OTT Player) --- */
+        .movie-card { border-radius: 20px; overflow: hidden; cursor: pointer; background: #000; position: relative; transition: 0.4s; height: 400px; }
+        .movie-card:hover { transform: scale(1.05); }
+        .movie-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .movie-info-overlay { position: absolute; bottom: 0; padding: 25px; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
 
-        /* Footer */
-        footer { background: #000; padding: 50px 8%; text-align: center; border-top: 1px solid #222; }
-        .social-links a { color: white; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
-        .social-links a:hover { color: var(--accent); }
+        /* --- 8. Modals (Unified) --- */
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.98); 
+            justify-content: center; align-items: center; 
+        }
+        .modal-content { width: 90%; max-width: 1100px; background: white; border-radius: 35px; overflow: hidden; position: relative; animation: modalIn 0.5s cubic-bezier(0.2, 1, 0.3, 1); }
+        @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .close-btn { position: absolute; top: 25px; right: 30px; font-size: 40px; cursor: pointer; z-index: 100; color: #fff; background: rgba(0,0,0,0.3); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+        /* --- 9. Feedback --- */
+        .feedback-form { background: var(--card); padding: 60px; border-radius: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .input-group input, textarea { width: 100%; padding: 20px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 20px; outline: none; font-size: 1rem; }
+        .submit-btn { background: var(--accent); color: white; border: none; padding: 20px; border-radius: 15px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+
+        /* --- 10. Social Media Footer --- */
+        footer { padding: 80px 8%; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; }
+        .social-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; }
+        .social-item { text-decoration: none; color: #636e72; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .social-item i { font-size: 2.2rem; margin-bottom: 10px; }
+        .social-item.insta:hover { color: #E1306C; transform: translateY(-5px); }
+        .social-item.x:hover { color: #000; transform: translateY(-5px); }
+        .social-item.fb:hover { color: #1877F2; transform: translateY(-5px); }
+        .social-item.yt:hover { color: #FF0000; transform: translateY(-5px); }
+        .social-item.ln:hover { color: #0077B5; transform: translateY(-5px); }
+
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .feedback-form { grid-template-columns: 1fr; }
+            .location-pin { display: none; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="location-pin">
+        <div class="dot"></div>
+        <span style="font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">Now SALEM, Tamilnadu</span>
+    </div>
     <nav>
-        <div class="logo">ElavarasanOfficial.com</div>
+        <div class="logo">ELAVARASAN<span>OFFICIAL</span></div>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#stories">Blog</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#movies">Cinema</a>
-        </div>
+            <a href="#Home">Home</a>
+            <a href="#Blog">Blog</a>
+            <a href="#Gallery">Gallery</a>
+            <a href="#Cinema">Cinema</a>
+            <a href="#Contact">Contact</a>
+     </div>
     </nav>
 
     <section class="hero" id="home">
-        <div>
-            <h1>The Cinematic Traveler</h1>
-            <p>Capturing Stories | Chasing Sunsets</p>
+        <div class="hero-content" data-aos="zoom-in">
+            <p>Capturing the Soul of Travel</p>
+            <h1>Beyond Every <br> New Horizon.</h1>
+            <span>Exploring high-definition stories, one frame at a time. I am Elavarasan, a cinematic traveler and storyteller.</span>
+            <div class="next-dest">
+                <i class="fas fa-plane-departure" style="color: var(--accent);"></i>
+                <span>Next Destination: <b>Ladakh, India (June 2026)</b></span>
+    </div>
+    </section>
+
+    <section class="container" id="blog" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="section-title">Cinematic Blog</h2>
+        </div>
+        <div class="grid">
+            <div class="blog-card" onclick="openBlog('The Misty Mountains', 'Hiking through the Munnar trails was a soul-stirring experience. The fog, the cold breeze, and the silence were magical...', 'https://images.unsplash.com/photo-1590050873881-bd2393393b4e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1590050873881-bd2393393b4e?auto=format&fit=crop&w=600&q=80" alt="Blog">
+                <h3>The Misty Mountains</h3>
+                <p>Exploring the hidden peaks of Kerala...</p>
+            </div>
+            <div class="blog-card" onclick="openBlog('Ocean Whispers', 'Sitting on the cliff during sunset was pure peace. The waves rhythmically hit the shore, telling old stories.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Ocean">
+                <h3>Ocean Whispers</h3>
+                <p>Deep dive into the serene blue coastlines...</p>
+            </div>
+            <div class="blog-card" onclick="openBlog('Ocean Whispers', 'Sitting on the cliff during sunset was pure peace. The waves rhythmically hit the shore, telling old stories.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Ocean">
+                <h3>Ocean Whispers</h3>
+                <p>Deep dive into the serene blue coastlines...</p>
+            </div>
+            <div class="blog-card" onclick="openBlog('Ocean Whispers', 'Sitting on the cliff during sunset was pure peace. The waves rhythmically hit the shore, telling old stories.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Ocean">
+                <h3>Ocean Whispers</h3>
+                <p>Deep dive into the serene blue coastlines...</p>
+            </div>
+            <div class="blog-card" onclick="openBlog('Ocean Whispers', 'Sitting on the cliff during sunset was pure peace. The waves rhythmically hit the shore, telling old stories.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Ocean">
+                <h3>Ocean Whispers</h3>
+                <p>Deep dive into the serene blue coastlines...</p>
+            </div>
+            <div class="blog-card" onclick="openBlog('Ocean Whispers', 'Sitting on the cliff during sunset was pure peace. The waves rhythmically hit the shore, telling old stories.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Ocean">
+                <h3>Ocean Whispers</h3>
+                <p>Deep dive into the serene blue coastlines...</p>
+            </div>
+            <div class="blog-card" onclick="openBlog('Ocean Whispers', 'Sitting on the cliff during sunset was pure peace. The waves rhythmically hit the shore, telling old stories.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Ocean">
+                <h3>Ocean Whispers</h3>
+                <p>Deep dive into the serene blue coastlines...</p>
+            </div>
         </div>
     </section>
 
-    <div class="container" id="stories">
-        <h2 class="section-title">Travel Journals</h2>
-        <div class="blog-grid">
-            <div class="blog-card">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=60" class="blog-img">
-                <div class="blog-content">
-                    <h3>The Road Untraveled</h3>
-                    <p>Exploring the deep roots of Tamil heritage through the lenses of a traveler.</p>
+    <section class="container" id="gallery" data-aos="fade-up">
+        <h2 class="section-title">Visual Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openFullImg('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80')">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80">
+            </div>
+            <div class="gallery-item" onclick="openFullImg('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80')">
+                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80">
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="cinema" data-aos="fade-up">
+        <h2 class="section-title">Favorite Cinema</h2>
+        <div class="grid">
+            <div class="movie-card" onclick="openPlayer('Urvashi', '14qbvexASY-mqv-a9YpKxQoCflAGvcrk6', 'Ulagame ethirthalum pothu thukanum!')">
+                <img src="F:\blog\trail\Elavarasanofficial\images\image_3.jpg" alt="Ghilli">
+                <div class="movie-info-overlay">
+                    <h3>ARR</h3>
+                    <p>Action / Drama</p>
+     </div>
+     </div>
                 </div>
             </div>
-            <div class="blog-card">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=60" class="blog-img">
-                <div class="blog-content">
-                    <h3>Monsoon Magic</h3>
-                    <p>How the mountains transform during the heavy rains of November.</p>
-                </div>
-            </div>
         </div>
-    </div>
+    </section>
 
-  <div class="container" id="gallery">
-    <h2 class="section-title">Travel Moments</h2>
-    <div class="gallery-grid">
-        <div class="gallery-item" onclick="viewImage('images/travel1.jpg')">
-            <img src="images/travel1.jpg" alt="Travel Photo 1">
-        </div>
-        <div class="gallery-item" onclick="viewImage('images/travel2.jpg')">
-            <img src="images/travel2.jpg" alt="Travel Photo 2">
-        </div>
-        <div class="gallery-item" onclick="viewImage('images/travel3.jpg')">
-            <img src="images/travel3.jpg" alt="Travel Photo 3">
-        </div>
-    </div>
-</div>
-
-<div id="imageLightbox" class="lightbox">
-    <span class="close-lightbox" onclick="closeImage()">&times;</span>
-    <img id="fullImage" src="">
-</div>
-    <div class="container" id="movies">
-        <h2 class="section-title">Top 10 Cinema Picks</h2>
-        <div class="movie-grid">
-            <div class="movie-item" onclick="openMovie('Ghilli', 'GzZ-6zP5eYc', 'Indha ulagame unna ethirthalum... Thonum pothu dhaan thukanum!')">
-                <img src="https://drive.google.com/file/d/1k6A6eLMMyE1AqRYu9qehcaLOZBJSf-N-/view?usp=sharing" alt="Ghilli">
-                <div class="movie-overlay">Ghilli</div>
+    <section class="container" id="contact" data-aos="fade-up">
+        <div class="feedback-form">
+            <div>
+                <h2 style="font-size: 3rem; letter-spacing: -2px;">Connect With <br> The Visionary.</h2>
+                <p style="margin-top: 20px; color: #666;">Share your feedback.</p>
             </div>
-            <div class="movie-item" onclick="openMovie('Leo', 'Po3j_vIn7i8', 'I am a Badass!')">
-                <img src="https://via.placeholder.com/200x300?text=Leo+Poster" alt="Leo">
-                <div class="movie-overlay">Leo</div>
-            </div>
-            </div>
-    </div>
-
-    <div id="movieModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeMovie()">&times;</span>
-            <div class="video-box">
-                <iframe id="videoPlayer" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div class="details-box">
-                <h2 id="mTitle">Movie Title</h2>
-                <p id="mQuote" class="quote"></p>
+            <div class="input-group">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea rows="5" placeholder="Your Message / Feedback"></textarea>
+                <button class="submit-btn" style="width:100%">SEND MESSAGE</button>
             </div>
         </div>
-    </div>
+    </section>
 
     <footer>
-    <style>
-    /* Social Media Section Styling */
-    .social-section {
-        padding: 50px 8%;
-        background-color:  #0a0a0a;
-        text-align: center;
-        border-top: 1px solid #eeeeee;
-    }
-    .social-title {
-        font-size: 1.8rem;
-        color: #2d3436;
-        margin-bottom: 30px;
-        font-weight: 700;
-    }
-    .social-links-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 30px;
-    }
-    .social-item {
-        text-decoration: none;
-        transition: transform 0.3s ease, color 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #636e72; /* Muted grey default */
-    }
-    .social-item i {
-        font-size: 2.2rem;
-        margin-bottom: 8px;
-    }
-    .social-item span {
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    /* Hover Effects with Official Colors */
-    .social-item.insta:hover { color: #E1306C; transform: translateY(-5px); }
-    .social-item.x-twitter:hover { color: #000000; transform: translateY(-5px); }
-    .social-item.facebook:hover { color: #1877F2; transform: translateY(-5px); }
-    .social-item.youtube:hover { color: #FF0000; transform: translateY(-5px); }
-    .social-item.linkedin:hover { color: #0077B5; transform: translateY(-5px); }
-
-    /* Mobile view adjustments */
-    @media (max-width: 480px) {
-        .social-links-container { gap: 20px; }
-        .social-item i { font-size: 1.8rem; }
-    }
-</style>
-
-<section class="social-section" id="social-connect">
-    <h2 class="social-title">Follow My Journey</h2>
-    <div class="social-links-container">
-        
-        <a href="https://www.instagram.com/elavarasan_santhoshkumar" target="_blank" class="social-item insta">
-            <i class="fab fa-instagram"></i>
-            <span>Instagram</span>
-        </a>
-
-        <a href="https://x.com/YOUR_USERNAME" target="_blank" class="social-item x-twitter">
-            <i class="fab fa-x-twitter"></i>
-            <span>X / Twitter</span>
-        </a>
-
-        <a href="https://www.facebook.com/YOUR_USERNAME" target="_blank" class="social-item facebook">
-            <i class="fab fa-facebook-f"></i>
-            <span>Facebook</span>
-        </a>
-
-        <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" class="social-item youtube">
-            <i class="fab fa-youtube"></i>
-            <span>YouTube</span>
-        </a>
-
-        <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" class="social-item linkedin">
-            <i class="fab fa-linkedin-in"></i>
-            <span>LinkedIn</span>
-        </a>
-
-    </div>
-</section>
+        <div class="social-links">
+            <a href="https://www.instagram.com/elavarasan_santhoshkumar" target="_blank" class="social-item insta"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+            <a href="#" class="social-item x"><i class="fab fa-x-twitter"></i><span>Twitter</span></a>
+            <a href="https://www.facebook.com/santhosh.elavarasan.7" target="_blank" class="social-item fb"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+            <a href="#" class="social-item yt"><i class="fab fa-youtube"></i><span>YouTube</span></a>
+            <a href="https://www.linkedin.com/in/elavarasan-santhoshkumar-338307387" target="_blank" class="social-item ln"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
         </div>
-        <p style="margin-top:20px; color: var(--gray);">&copy; 2026 Elavarasan Santhoshkumar. All Rights Reserved.</p>
+        <p>&copy; 2026 Elavarasan Santhoshkumar.</p>
     </footer>
 
+    <div id="mainModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modalBody"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        function openMovie(title, vidId, quote) {
-            document.getElementById('mTitle').innerText = title;
-            document.getElementById('mQuote').innerText = quote;
-            document.getElementById('videoPlayer').src = "https://www.youtube.com/embed/" + vidId + "?autoplay=1";
-            document.getElementById('movieModal').style.display = "block";
+        AOS.init({ duration: 1000 });
+        const modal = document.getElementById('mainModal');
+        const modalBody = document.getElementById('modalBody');
+
+        function openBlog(title, text, img) {
+            modalBody.innerHTML = `<div style="background:#fff; color:#000;"><img src="${img}" style="width:100%; height:450px; object-fit:cover;"><div style="padding:50px;"><h2>${title}</h2><p style="line-height:1.8; margin-top:20px;">${text}</p></div></div>`;
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
         }
 
-        function closeMovie() {
-            document.getElementById('movieModal').style.display = "none";
-            document.getElementById('videoPlayer').src = "";
+        function openFullImg(img) {
+            modalBody.innerHTML = `<img src="${img}" style="width:100%; display:block;">`;
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
         }
 
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('movieModal')) { closeMovie(); }
+        function openPlayer(title, linkId, quote) {
+            modalBody.innerHTML = `<div style="background:#000;"><div style="position:relative; padding-bottom:56.25%;"><iframe src="https://drive.google.com/file/d/${linkId}/preview" style="position:absolute; top:0; left:0; width:100%; height:100%;" allow="autoplay"></iframe></div><div style="padding:40px; background:#111; color:#fff;"><h2>${title}</h2><p style="font-style:italic; margin-top:15px; color:#888;">"${quote}"</p></div></div>`;
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
         }
+
+        function closeModal() { modal.style.display = "none"; modalBody.innerHTML = ""; document.body.style.overflow = "auto"; }
+        window.onclick = (e) => { if (e.target == modal) closeModal(); }
     </script>
-
 </body>
 </html>
