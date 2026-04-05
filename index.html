@@ -73,7 +73,7 @@
 <body>
 
     <nav>
-        <div class="logo">ELAVARASAN</div>
+        <div class="logo">ElavarasanOfficial.com</div>
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#stories">Blog</a>
@@ -109,16 +109,25 @@
         </div>
     </div>
 
-    <div class="container" id="gallery" style="background: #050505;">
-        <h2 class="section-title">Visual Moments</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="images/image_3.jpg"
-            <div class="gallery-item"><img src="image_3.jpg"
-            <div class="gallery-item"><img src="https://via.placeholder.com/400x400?text=Travel+3"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/400x400?text=Travel+4"></div>
+  <div class="container" id="gallery">
+    <h2 class="section-title">Travel Moments</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item" onclick="viewImage('images/travel1.jpg')">
+            <img src="images/travel1.jpg" alt="Travel Photo 1">
+        </div>
+        <div class="gallery-item" onclick="viewImage('images/travel2.jpg')">
+            <img src="images/travel2.jpg" alt="Travel Photo 2">
+        </div>
+        <div class="gallery-item" onclick="viewImage('images/travel3.jpg')">
+            <img src="images/travel3.jpg" alt="Travel Photo 3">
         </div>
     </div>
+</div>
 
+<div id="imageLightbox" class="lightbox">
+    <span class="close-lightbox" onclick="closeImage()">&times;</span>
+    <img id="fullImage" src="">
+</div>
     <div class="container" id="movies">
         <h2 class="section-title">Top 10 Cinema Picks</h2>
         <div class="movie-grid">
